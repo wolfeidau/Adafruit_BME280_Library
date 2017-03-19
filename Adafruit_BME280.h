@@ -200,14 +200,14 @@ class Adafruit_BME280 {
         int16_t   readS16_LE(byte reg); // little endian
 
         uint8_t   _i2caddr;
-        uint8_t   _sda;
-        uint8_t   _scl;
-        
         int32_t   _sensorID;
         int32_t   t_fine;
 
         int8_t _cs, _mosi, _miso, _sck;
 
+        uint8_t   _sda;
+        uint8_t   _scl;
+        
         bme280_calib_data _bme280_calib;
 
         // The config register
