@@ -23,7 +23,7 @@
  PRIVATE FUNCTIONS
  ***************************************************************************/
 Adafruit_BME280::Adafruit_BME280()
-    : _cs(-1), _mosi(-1), _miso(-1), _sck(-1)
+    : _cs(-1), _mosi(-1), _miso(-1), _sck(-1), _sda(-1), _scl(-1)
 { }
 
 Adafruit_BME280::Adafruit_BME280(int8_t cspin)
@@ -34,6 +34,9 @@ Adafruit_BME280::Adafruit_BME280(int8_t cspin, int8_t mosipin, int8_t misopin, i
     : _cs(cspin), _mosi(mosipin), _miso(misopin), _sck(sckpin)
 { }
 
+Adafruit_BME280::Adafruit_BME280(int8_t sda, int8_t scl) 
+    : _cs(-1), _sda(sda), _scl(scl)
+{ }    
 
 /**************************************************************************/
 /*!
@@ -47,7 +50,7 @@ bool Adafruit_BME280::begin(uint8_t           addr)
     // init I2C or SPI sensor interface
     if (_cs == -1) {
         // I2C
-        Wire.begin();
+        Wire.begin(_sda, _scl);
     } else {
         digitalWrite(_cs, HIGH);
         pinMode(_cs, OUTPUT);

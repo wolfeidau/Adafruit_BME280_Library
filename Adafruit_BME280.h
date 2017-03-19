@@ -165,7 +165,8 @@ class Adafruit_BME280 {
         Adafruit_BME280(void);
         Adafruit_BME280(int8_t cspin);
         Adafruit_BME280(int8_t cspin, int8_t mosipin, int8_t misopin, int8_t sckpin);
-        
+        Adafruit_BME280(int8_t sda, int8_t scl);
+
         bool  begin(uint8_t addr                  = BME280_ADDRESS);
 
 	void setSampling(sensor_mode mode              = MODE_NORMAL,
@@ -199,6 +200,9 @@ class Adafruit_BME280 {
         int16_t   readS16_LE(byte reg); // little endian
 
         uint8_t   _i2caddr;
+        uint8_t   _sda;
+        uint8_t   _scl;
+        
         int32_t   _sensorID;
         int32_t   t_fine;
 
